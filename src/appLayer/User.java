@@ -1,11 +1,12 @@
 package appLayer;
 
+import dataLayer.DB_user;
+
 public class User {
     public boolean isValidUserCredentials(String userName, String userPassword)
     {
-        if( userName.equals("hamid") && userPassword.equals("hamid")){
-            return true;
-        }
-        return false;
+        DB_user db_user = new DB_user();
+        return db_user.isValidUserLogin(userName,userPassword);
+
     }
 }
