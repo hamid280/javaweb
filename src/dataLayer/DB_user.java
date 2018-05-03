@@ -6,11 +6,11 @@ public class DB_user {
 
     //JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/webapp";
+    //static final String DB_URL = "jdbc:mysql://localhost/webapp";
 
     //Database credentials
-    static final String USER = "root";
-    static final String PASS = "root";
+    //static final String USER = "root";
+    //static final String PASS = "root";
 
     public boolean isValidUserLogin(String userName, String userPassword)
     {
@@ -27,7 +27,14 @@ public class DB_user {
 
             //step3 Open a connection
             System.out.println("Connecting to database...");
-            connection  = DriverManager.getConnection(DB_URL, USER, PASS);
+            //connection  = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            String DB_Url = System.getProperty("JDBC_CONNECTION_STRING");
+            String DB_User = System.getProperty("JDBC_USER");
+            String DB_Password = System.getProperty("JDBC_PASSWORD");
+            String DB_Connection_String = DB_Url + "?user=" + DB_User + "&password=" + DB_Password;
+
+            connection = DriverManager.getConnection(DB_Connection_String);
 
             //step4 Execute a query
             System.out.println("Creating statement");
